@@ -30,7 +30,7 @@ app.get('/', function(req, res){
 
 //INDEX
 app.get('/photos', function(req, res){
-    res.send("redirected");
+    res.render('index');
 });
 
 //listener
