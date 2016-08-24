@@ -14,7 +14,20 @@ var photoSchema = new mongoose.Schema({
     created: {type: Date, default: Date.now}
 });
 
-var Photo = new mongoose.model('Photo', photoSchema);
+var Photo = mongoose.model('Photo', photoSchema);
+
+//bullshit test add here
+// Photo.create({
+//     title: "Test Photo",
+//     image: "https://farm4.staticflickr.com/3953/15613249585_d1e45f2ee5.jpg",
+//     description: "Blah blah blah, description here",
+// }, function(err){
+//     if(err){
+//         console.log("Error creating Bullshit");
+//     }else{
+//         console.log('New entry created!');
+//     }
+// });
 
 //app setup
 app.set('view engine', 'ejs');
