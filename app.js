@@ -30,7 +30,13 @@ app.get('/', function(req, res){
 
 //INDEX
 app.get('/photos', function(req, res){
-    res.render('index');
+    Photo.find({}, function(err, photos){
+        if(err){
+            console.log(err);
+        }else{
+            res.render('index', {photos: photos});
+        }
+    });
 });
 
 //listener
