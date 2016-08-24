@@ -54,7 +54,17 @@ app.post('/photos', function(req, res){
             res.redirect('/photos');
         }
     });
-    //redirect
+});
+
+//SHOW
+app.get('/photos/:id', function(req, res){
+    Photo.findById(req.params.id, function(err, foundPhoto){
+        if(err){
+            console.log("Error in SHOW");
+        }else{
+            res.render('show', {photo: foundPhoto});
+        }
+    });
 });
 
 //listener

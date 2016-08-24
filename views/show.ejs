@@ -1,0 +1,18 @@
+<% include ./partials/header%>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1><%= photo.title%></h1>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <img class="thumbnail" src="<%= photo.image%>"></img>
+                <p class="text-muted"><%= photo.created.toDateString()%></p>
+                <p><%= photo.description%></p>
+                <a href="/photos" class="btn btn-xs btn-primary">Go Back</a>
+                <a href="#" class="btn btn-xs btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+
+<% include ./partials/footer%>
