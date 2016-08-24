@@ -39,6 +39,24 @@ app.get('/photos', function(req, res){
     });
 });
 
+//NEW /photos/new
+app.get('/photos/new', function(req, res){
+    res.render('new');
+});
+
+//CREATE
+app.post('/photos', function(req, res){
+    //create 
+    Photo.create(req.body.photo, function(err, newPhoto){
+        if(err){
+            console.log("Error at CREATE");
+        }else{
+            res.redirect('/photos');
+        }
+    });
+    //redirect
+});
+
 //listener
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server Started!");
