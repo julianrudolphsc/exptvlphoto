@@ -16,18 +16,6 @@ var photoSchema = new mongoose.Schema({
 
 var Photo = mongoose.model('Photo', photoSchema);
 
-//bullshit test add here
-// Photo.create({
-//     title: "Test Photo",
-//     image: "https://farm4.staticflickr.com/3953/15613249585_d1e45f2ee5.jpg",
-//     description: "Blah blah blah, description here",
-// }, function(err){
-//     if(err){
-//         console.log("Error creating Bullshit");
-//     }else{
-//         console.log('New entry created!');
-//     }
-// });
 
 //app setup
 app.set('view engine', 'ejs');
@@ -35,6 +23,15 @@ app.use(express.static('public'));
 app.use(bodyparser.urlencoded({extended: true}));
 
 //routes
+//redirect / to /photos
+app.get('/', function(req, res){
+    res.redirect('/photos');
+});
+
+//INDEX
+app.get('/photos', function(req, res){
+    res.send("redirected");
+});
 
 //listener
 app.listen(process.env.PORT, process.env.IP, function(){
