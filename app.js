@@ -21,6 +21,7 @@ var Photo = mongoose.model('Photo', photoSchema);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyparser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 //routes
 //redirect / to /photos
@@ -63,6 +64,40 @@ app.get('/photos/:id', function(req, res){
             console.log("Error in SHOW");
         }else{
             res.render('show', {photo: foundPhoto});
+        }
+    });
+});
+
+//EDIT
+app.get('/photos/:id/edit', function(req, res){
+    Photo.findById(req.params.id, function(err, foundPhoto){
+        if(err){
+            console.log("Error at edit");
+        }else{
+            res.render('edit', {photo: foundPhoto});
+        }
+    });
+});
+
+//UPDATE
+app.put('/photos/:id', function(req, res){
+    Photo.findByIdAndUpdate(req.params.id, req.body.photo, function(err, updatedPhoto){
+        if(err){
+            res.redirect('/');
+        }else{
+            res.redirect('/photos/'+req.params.id);
+        }
+    });
+});
+
+//DESTROY
+app.delete('/photos/:id', function(req, res){
+    Photo.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect('/');
+            console.log("error at delete");
+        }else{
+            res.redirect('/');
         }
     });
 });
